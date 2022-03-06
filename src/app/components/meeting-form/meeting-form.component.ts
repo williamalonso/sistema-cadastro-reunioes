@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MeetingService } from 'src/app/service/meeting.service';
 
 @Component({
   selector: 'app-meeting-form',
@@ -9,10 +10,11 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class MeetingFormComponent implements OnInit {
 
-  public meetingForm!: FormGroup;
+  meetingForm: FormGroup;
 
   constructor(
-    
+
+    private service: MeetingService,
     private fb: FormBuilder,
 
     public dialogRef: MatDialogRef<MeetingFormComponent>,
@@ -32,8 +34,40 @@ export class MeetingFormComponent implements OnInit {
     })
   }
 
-  cancelScreen(): void {
+  cancel(): void {
     this.dialogRef.close();
+  }
+
+  save() {
+    if(this.meetingForm.value.id == null) {
+      this.create();
+    } else {
+      this.update();
+    }
+  }
+
+  create() {
+    this.service.insert(this.meetingForm.value).subscribe( result => {
+      console.log('Meeting Insert', result);
+    },
+    err => {
+      console.log('Err', err);
+    });
+    this.dialogRef.close(true);
+    this.meetingForm.reset();
+    window.location.reload;
+  }
+
+  update() {
+    this.service.update(this.meetingForm.value).subscribe( result => {
+      console.log('Meeting Insert', result);
+    },
+    err => {
+      console.log('Err', err);
+    });
+    this.dialogRef.close(true);
+    this.meetingForm.reset();
+    window.location.reload;
   }
 
 }
