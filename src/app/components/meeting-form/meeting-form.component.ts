@@ -48,26 +48,26 @@ export class MeetingFormComponent implements OnInit {
 
   create() {
     this.service.insert(this.meetingForm.value).subscribe( result => {
-      console.log('Meeting Insert', result);
+      //console.log('Meeting Insert', result);
     },
     err => {
-      console.log('Err', err);
+      //console.log('Err', err);
     });
     this.dialogRef.close(true);
     this.meetingForm.reset();
-    window.location.reload;
+    window.location.reload();
   }
 
   update() {
     this.service.update(this.meetingForm.value).subscribe( result => {
-      console.log('Meeting Insert', result);
+      //console.log('Meeting Insert', result);
     },
     err => {
-      console.log('Err', err);
+      //console.log('Err', err);
     });
     this.dialogRef.close(true);
     this.meetingForm.reset();
-    window.location.reload;
+    window.location.reload();
   }
 
 }
