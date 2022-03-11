@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
+import * as moment from 'moment';
 import { MeetingService } from 'src/app/service/meeting.service';
 import { DeleteComponent } from '../delete/delete.component';
 import { MeetingFormComponent } from '../meeting-form/meeting-form.component';
@@ -29,6 +30,27 @@ export class MeetingListComponent implements OnInit {
 
   ngOnInit(): void {
     this.findAll(0, 'meetingDate', null);
+  }
+
+  findByParameter(){
+    let filters = '';
+    
+    if(this.meetingNameFind != null  && this.meetingNameFind != ''){ // se o nome for diferente de nulo
+      filters+= 'meetingName='+this.meetingNameFind; // coloca o nome no 'filters'
+    }
+
+    if(this.meetingDateFind != null) {
+      if(filters != ''){
+        filters+= ';';
+      }
+
+      let newDate: moment.Moment = moment.utc(this.meetingDateFind).local();
+      filters+= 'meetingDate='+newDate.format("YYYY-MM-DDTH3:mm:ss")+'.000Z';
+
+    }
+    console.log(filters);
+
+    this.findAll(0,'meetingDate',filters);
   }
 
   findAll(pageNumber: number, sortField: string, filters: any) {
@@ -66,5 +88,7 @@ export class MeetingListComponent implements OnInit {
       console.log('The dialog was closed');
     })
   }
+
+  
 
 }
