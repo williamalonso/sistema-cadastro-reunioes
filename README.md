@@ -3,7 +3,7 @@
 </h1>
 
 <div align="center">
-  <img src="https://github.com/williamalonso/site-listagem-filmes/blob/master/img/paginainicial.png" alt"Home Page" title="Sistema de cadastro de Reuniões" width="600" />
+  <img src="https://github.com/williamalonso/sistema-cadastro-reunioes/blob/master/src/assets/img/home.png" alt"Home Page" title="Sistema de cadastro de Reuniões" width="600" />
   
 
 ---
