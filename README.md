@@ -44,8 +44,6 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 ## 🙅 Instalações e usos
 
-Para acessar o site [clique aqui](https://sistema-cadastro-reunioes.vercel.app/)
-
 Caso queira, clone ou faça o downlod desse repositório:
 
 ```
